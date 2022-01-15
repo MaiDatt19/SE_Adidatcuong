@@ -1,0 +1,718 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AdidatcuongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accountant">
+          <Key>
+            <PropertyRef Name="AccountantID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountantID" Type="varchar" MaxLength="4" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Password" Type="char" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adidatcuong.dbo.AccountantInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AccountantInfo">
+          <Key>
+            <PropertyRef Name="AccountantID" />
+            <PropertyRef Name="AccountantName" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Birthday" />
+          </Key>
+          <Property Name="AccountantID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="AccountantName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="PhoneNumber" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="AgentEmail" />
+          </Key>
+          <Property Name="AgentEmail" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="AgentName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PhoneNumber" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adidatcuong.dbo.DB_Detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DB_Detail">
+          <Key>
+            <PropertyRef Name="DBID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Quantity" />
+          </Key>
+          <Property Name="DBID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="ProductID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Quantity" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeliveryBill">
+          <Key>
+            <PropertyRef Name="DBID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DBID" Type="varchar" MaxLength="5" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="OrderID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="ExportDay" Type="date" Nullable="false" />
+          <Property Name="AccountantID" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adidatcuong.dbo.Order_Detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Order_Detail">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Quantity" />
+          </Key>
+          <Property Name="OrderID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="ProductID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Quantity" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="varchar" MaxLength="5" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="AgentEmail" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="OrderDay" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="TotalMoney" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="varchar" MaxLength="4" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Quantity" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UnitPrice" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WarehouseReceipt">
+          <Key>
+            <PropertyRef Name="WRID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WRID" Type="varchar" MaxLength="5" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="ImportDay" Type="date" Nullable="false" />
+          <Property Name="TotalMoney" Type="money" Nullable="false" />
+          <Property Name="AccountantID" Type="char" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Adidatcuong.dbo.WR_Detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="WR_Detail">
+          <Key>
+            <PropertyRef Name="WRID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Quantity" />
+          </Key>
+          <Property Name="WRID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="ProductID" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Quantity" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Accountant">
+          <End Role="Accountant" Type="Self.Accountant" Multiplicity="1" />
+          <End Role="AccountantInfo" Type="Self.AccountantInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accountant">
+              <PropertyRef Name="AccountantID" />
+            </Principal>
+            <Dependent Role="AccountantInfo">
+              <PropertyRef Name="AccountantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DBID">
+          <End Role="DeliveryBill" Type="Self.DeliveryBill" Multiplicity="1" />
+          <End Role="DB_Detail" Type="Self.DB_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryBill">
+              <PropertyRef Name="DBID" />
+            </Principal>
+            <Dependent Role="DB_Detail">
+              <PropertyRef Name="DBID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DBOrder">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="DeliveryBill" Type="Self.DeliveryBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="DeliveryBill">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DBproduct">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="DB_Detail" Type="Self.DB_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="DB_Detail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderAgentEmail">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentEmail" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="AgentEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderProduct">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WRID">
+          <End Role="WarehouseReceipt" Type="Self.WarehouseReceipt" Multiplicity="1" />
+          <End Role="WR_Detail" Type="Self.WR_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseReceipt">
+              <PropertyRef Name="WRID" />
+            </Principal>
+            <Dependent Role="WR_Detail">
+              <PropertyRef Name="WRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WRproduct">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="WR_Detail" Type="Self.WR_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="WR_Detail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdidatcuongModelStoreContainer">
+          <EntitySet Name="Accountant" EntityType="Self.Accountant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryBill" EntityType="Self.DeliveryBill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WarehouseReceipt" EntityType="Self.WarehouseReceipt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountantInfo" EntityType="Self.AccountantInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[AccountantInfo].[AccountantID] AS [AccountantID], 
+[AccountantInfo].[AccountantName] AS [AccountantName], 
+[AccountantInfo].[Gender] AS [Gender], 
+[AccountantInfo].[PhoneNumber] AS [PhoneNumber], 
+[AccountantInfo].[Address] AS [Address], 
+[AccountantInfo].[Birthday] AS [Birthday]
+FROM [dbo].[AccountantInfo] AS [AccountantInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DB_Detail" EntityType="Self.DB_Detail" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[DB_Detail].[DBID] AS [DBID], 
+[DB_Detail].[ProductID] AS [ProductID], 
+[DB_Detail].[Quantity] AS [Quantity]
+FROM [dbo].[DB_Detail] AS [DB_Detail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Order_Detail].[OrderID] AS [OrderID], 
+[Order_Detail].[ProductID] AS [ProductID], 
+[Order_Detail].[Quantity] AS [Quantity]
+FROM [dbo].[Order_Detail] AS [Order_Detail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="WR_Detail" EntityType="Self.WR_Detail" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[WR_Detail].[WRID] AS [WRID], 
+[WR_Detail].[ProductID] AS [ProductID], 
+[WR_Detail].[Quantity] AS [Quantity]
+FROM [dbo].[WR_Detail] AS [WR_Detail]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Accountant" Association="Self.FK_Accountant">
+            <End Role="Accountant" EntitySet="Accountant" />
+            <End Role="AccountantInfo" EntitySet="AccountantInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DBID" Association="Self.FK_DBID">
+            <End Role="DeliveryBill" EntitySet="DeliveryBill" />
+            <End Role="DB_Detail" EntitySet="DB_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DBOrder" Association="Self.FK_DBOrder">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="DeliveryBill" EntitySet="DeliveryBill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DBproduct" Association="Self.FK_DBproduct">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="DB_Detail" EntitySet="DB_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderAgentEmail" Association="Self.FK_OrderAgentEmail">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail" Association="Self.FK_OrderDetail">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderProduct" Association="Self.FK_OrderProduct">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WRID" Association="Self.FK_WRID">
+            <End Role="WarehouseReceipt" EntitySet="WarehouseReceipt" />
+            <End Role="WR_Detail" EntitySet="WR_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WRproduct" Association="Self.FK_WRproduct">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="WR_Detail" EntitySet="WR_Detail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AdidatcuongModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Accountant">
+          <Key>
+            <PropertyRef Name="AccountantID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountantID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AccountantInfoes" Relationship="Self.FK_Accountant" FromRole="Accountant" ToRole="AccountantInfo" />
+        </EntityType>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="AgentEmail" />
+          </Key>
+          <Property Name="AgentEmail" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AgentName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_OrderAgentEmail" FromRole="Agent" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="DeliveryBill">
+          <Key>
+            <PropertyRef Name="DBID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DBID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="OrderID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExportDay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AccountantID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DB_Detail" Relationship="Self.FK_DBID" FromRole="DeliveryBill" ToRole="DB_Detail" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_DBOrder" FromRole="DeliveryBill" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="AgentEmail" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="OrderDay" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TotalMoney" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Agent" Relationship="Self.FK_OrderAgentEmail" FromRole="Orders" ToRole="Agent" />
+          <NavigationProperty Name="DeliveryBills" Relationship="Self.FK_DBOrder" FromRole="Orders" ToRole="DeliveryBill" />
+          <NavigationProperty Name="Order_Detail" Relationship="Self.FK_OrderDetail" FromRole="Orders" ToRole="Order_Detail" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ProductName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="DB_Detail" Relationship="Self.FK_DBproduct" FromRole="Product" ToRole="DB_Detail" />
+          <NavigationProperty Name="Order_Detail" Relationship="Self.FK_OrderProduct" FromRole="Product" ToRole="Order_Detail" />
+          <NavigationProperty Name="WR_Detail" Relationship="Self.FK_WRproduct" FromRole="Product" ToRole="WR_Detail" />
+        </EntityType>
+        <EntityType Name="WarehouseReceipt">
+          <Key>
+            <PropertyRef Name="WRID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WRID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ImportDay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TotalMoney" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="AccountantID" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="WR_Detail" Relationship="Self.FK_WRID" FromRole="WarehouseReceipt" ToRole="WR_Detail" />
+        </EntityType>
+        <EntityType Name="AccountantInfo">
+          <Key>
+            <PropertyRef Name="AccountantID" />
+            <PropertyRef Name="AccountantName" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Birthday" />
+          </Key>
+          <Property Name="AccountantID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AccountantName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Accountant" Relationship="Self.FK_Accountant" FromRole="AccountantInfo" ToRole="Accountant" />
+        </EntityType>
+        <EntityType Name="DB_Detail">
+          <Key>
+            <PropertyRef Name="DBID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Quantity" />
+          </Key>
+          <Property Name="DBID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="DeliveryBill" Relationship="Self.FK_DBID" FromRole="DB_Detail" ToRole="DeliveryBill" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_DBproduct" FromRole="DB_Detail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Order_Detail">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Quantity" />
+          </Key>
+          <Property Name="OrderID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail" FromRole="Order_Detail" ToRole="Orders" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderProduct" FromRole="Order_Detail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="WR_Detail">
+          <Key>
+            <PropertyRef Name="WRID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Quantity" />
+          </Key>
+          <Property Name="WRID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_WRproduct" FromRole="WR_Detail" ToRole="Product" />
+          <NavigationProperty Name="WarehouseReceipt" Relationship="Self.FK_WRID" FromRole="WR_Detail" ToRole="WarehouseReceipt" />
+        </EntityType>
+        <Association Name="FK_Accountant">
+          <End Role="Accountant" Type="Self.Accountant" Multiplicity="1" />
+          <End Role="AccountantInfo" Type="Self.AccountantInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accountant">
+              <PropertyRef Name="AccountantID" />
+            </Principal>
+            <Dependent Role="AccountantInfo">
+              <PropertyRef Name="AccountantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderAgentEmail">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentEmail" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="AgentEmail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DBID">
+          <End Role="DeliveryBill" Type="Self.DeliveryBill" Multiplicity="1" />
+          <End Role="DB_Detail" Type="Self.DB_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryBill">
+              <PropertyRef Name="DBID" />
+            </Principal>
+            <Dependent Role="DB_Detail">
+              <PropertyRef Name="DBID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DBOrder">
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+          <End Role="DeliveryBill" Type="Self.DeliveryBill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="DeliveryBill">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail">
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DBproduct">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="DB_Detail" Type="Self.DB_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="DB_Detail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderProduct">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Order_Detail" Type="Self.Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WRproduct">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="WR_Detail" Type="Self.WR_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="WR_Detail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WRID">
+          <End Role="WarehouseReceipt" Type="Self.WarehouseReceipt" Multiplicity="1" />
+          <End Role="WR_Detail" Type="Self.WR_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WarehouseReceipt">
+              <PropertyRef Name="WRID" />
+            </Principal>
+            <Dependent Role="WR_Detail">
+              <PropertyRef Name="WRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdidatcuongEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accountants" EntityType="Self.Accountant" />
+          <EntitySet Name="Agents" EntityType="Self.Agent" />
+          <EntitySet Name="DeliveryBills" EntityType="Self.DeliveryBill" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="WarehouseReceipts" EntityType="Self.WarehouseReceipt" />
+          <EntitySet Name="AccountantInfoes" EntityType="Self.AccountantInfo" />
+          <EntitySet Name="DB_Detail" EntityType="Self.DB_Detail" />
+          <EntitySet Name="Order_Detail" EntityType="Self.Order_Detail" />
+          <EntitySet Name="WR_Detail" EntityType="Self.WR_Detail" />
+          <AssociationSet Name="FK_Accountant" Association="Self.FK_Accountant">
+            <End Role="Accountant" EntitySet="Accountants" />
+            <End Role="AccountantInfo" EntitySet="AccountantInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderAgentEmail" Association="Self.FK_OrderAgentEmail">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DBID" Association="Self.FK_DBID">
+            <End Role="DeliveryBill" EntitySet="DeliveryBills" />
+            <End Role="DB_Detail" EntitySet="DB_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DBOrder" Association="Self.FK_DBOrder">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="DeliveryBill" EntitySet="DeliveryBills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail" Association="Self.FK_OrderDetail">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DBproduct" Association="Self.FK_DBproduct">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="DB_Detail" EntitySet="DB_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderProduct" Association="Self.FK_OrderProduct">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WRproduct" Association="Self.FK_WRproduct">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="WR_Detail" EntitySet="WR_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WRID" Association="Self.FK_WRID">
+            <End Role="WarehouseReceipt" EntitySet="WarehouseReceipts" />
+            <End Role="WR_Detail" EntitySet="WR_Detail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AdidatcuongModelStoreContainer" CdmEntityContainer="AdidatcuongEntities">
+          <EntitySetMapping Name="Accountants">
+            <EntityTypeMapping TypeName="AdidatcuongModel.Accountant">
+              <MappingFragment StoreEntitySet="Accountant">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AccountantID" ColumnName="AccountantID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="AdidatcuongModel.Agent">
+              <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="AgentEmail" ColumnName="AgentEmail" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryBills">
+            <EntityTypeMapping TypeName="AdidatcuongModel.DeliveryBill">
+              <MappingFragment StoreEntitySet="DeliveryBill">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DBID" ColumnName="DBID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ExportDay" ColumnName="ExportDay" />
+                <ScalarProperty Name="AccountantID" ColumnName="AccountantID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="AdidatcuongModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="AgentEmail" ColumnName="AgentEmail" />
+                <ScalarProperty Name="OrderDay" ColumnName="OrderDay" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="AdidatcuongModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WarehouseReceipts">
+            <EntityTypeMapping TypeName="AdidatcuongModel.WarehouseReceipt">
+              <MappingFragment StoreEntitySet="WarehouseReceipt">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WRID" ColumnName="WRID" />
+                <ScalarProperty Name="ImportDay" ColumnName="ImportDay" />
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+                <ScalarProperty Name="AccountantID" ColumnName="AccountantID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountantInfoes">
+            <EntityTypeMapping TypeName="AdidatcuongModel.AccountantInfo">
+              <MappingFragment StoreEntitySet="AccountantInfo">
+                <ScalarProperty Name="AccountantID" ColumnName="AccountantID" />
+                <ScalarProperty Name="AccountantName" ColumnName="AccountantName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DB_Detail">
+            <EntityTypeMapping TypeName="AdidatcuongModel.DB_Detail">
+              <MappingFragment StoreEntitySet="DB_Detail">
+                <ScalarProperty Name="DBID" ColumnName="DBID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Detail">
+            <EntityTypeMapping TypeName="AdidatcuongModel.Order_Detail">
+              <MappingFragment StoreEntitySet="Order_Detail">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WR_Detail">
+            <EntityTypeMapping TypeName="AdidatcuongModel.WR_Detail">
+              <MappingFragment StoreEntitySet="WR_Detail">
+                <ScalarProperty Name="WRID" ColumnName="WRID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

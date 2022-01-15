@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dcd8b3a65d4b4ad0a9dbbf67624d302a" Name="Diagram1">
+        <EntityTypeShape EntityType="AdidatcuongModel.Accountant" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdidatcuongModel.Agent" Width="1.5" PointX="1.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdidatcuongModel.DeliveryBill" Width="1.5" PointX="2" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdidatcuongModel.Order" Width="1.5" PointX="2" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdidatcuongModel.Product" Width="1.5" PointX="2" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdidatcuongModel.WarehouseReceipt" Width="1.5" PointX="6.875" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdidatcuongModel.AccountantInfo" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdidatcuongModel.DB_Detail" Width="1.5" PointX="4.625" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdidatcuongModel.Order_Detail" Width="1.5" PointX="4.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdidatcuongModel.WR_Detail" Width="1.5" PointX="4.25" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="AdidatcuongModel.FK_Accountant" ManuallyRouted="false" />
+        <AssociationConnector Association="AdidatcuongModel.FK_OrderAgentEmail" ManuallyRouted="false" />
+        <AssociationConnector Association="AdidatcuongModel.FK_DBID" ManuallyRouted="false" />
+        <AssociationConnector Association="AdidatcuongModel.FK_DBOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="AdidatcuongModel.FK_OrderDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="AdidatcuongModel.FK_DBproduct" ManuallyRouted="false" />
+        <AssociationConnector Association="AdidatcuongModel.FK_OrderProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="AdidatcuongModel.FK_WRproduct" ManuallyRouted="false" />
+        <AssociationConnector Association="AdidatcuongModel.FK_WRID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
